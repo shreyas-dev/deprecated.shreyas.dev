@@ -1,6 +1,15 @@
 {
   "sidebar": [
     {
+      "section": "Java Tutorials",
+      "topics": [
+        {
+          "title": "Hello World Java",
+          "slug": "hello-world-java"
+        }
+      ]
+    },
+    {
       "section": "Introduction",
       "topics": [
         {
