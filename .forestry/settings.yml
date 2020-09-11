@@ -4,6 +4,13 @@ auto_deploy: false
 admin_path: ''
 webhook_url: 
 sections:
+- type: directory
+  path: java
+  label: Java Tutorial
+  create: all
+  match: java/*
+  templates:
+  - documentation-page
 - type: heading
   label: Content
 - type: directory
