@@ -8,9 +8,9 @@ sections:
   label: Content
 - type: directory
   path: docs
-  label: Docs
+  label: Scala Tutorials
   create: all
-  match: "**/*"
+  match: scala/*
   templates:
   - documentation-page
 - type: heading
