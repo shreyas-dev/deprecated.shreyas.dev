@@ -3,7 +3,8 @@
     <transition name="theme">
       <moon-icon v-if="theme == 'bright'" class="moon" />
     </transition>
-    <transition name="theme">
+      <transition `
+                  `="theme">
       <sun-icon v-if="theme == 'dark'" class="sun" />
     </transition>
   </button>
@@ -31,7 +32,7 @@ export default {
       if (process.isClient && localStorage.getItem('theme') === null) {
         localStorage.setItem('theme', 'bright')
         self.theme = 'bright'
-      } 
+      }
       if (process.isClient) {
         body.classList.add(localStorage.getItem('theme'))
         self.theme = localStorage.getItem('theme')
