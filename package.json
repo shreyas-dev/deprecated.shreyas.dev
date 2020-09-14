@@ -22,6 +22,7 @@
     "vue-disqus": "^4.0.1",
     "vue-feather-icons": "^4.22.0",
     "vue-sharethis": "0.0.1",
+    "vue-sticky-directive": "0.0.10",
     "vuex": "^3.1.1",
     "websocket-extensions": "^0.1.4"
   },

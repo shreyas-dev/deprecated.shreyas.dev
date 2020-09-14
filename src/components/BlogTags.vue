@@ -1,11 +1,12 @@
 <template>
     <div>
+        <br>
         <span>
             Tags:
-            <g-link v-for="tag in tags" :key="tag.id" :to="tag.path">
-                {{tag.id}}
-            </g-link>
         </span>
+        <g-link v-for="tag in tags" :key="tag.id" :to="tag.path">
+            {{tag.id}}
+        </g-link>
     </div>
 </template>
 
@@ -20,6 +21,14 @@
 </script>
 
 <style lang="scss" scoped>
+span{
+    .dark & {
+        color: $textDark;
+    }
+    .bright & {
+        color: $textBright;
+    }
+}
 a{
     .dark & {
         background: $sidebarDark;
@@ -34,6 +43,7 @@ a{
         border-color: $sidebarDark;
     }
 }
+
 a{
     border-width: 1px;
     border-style: solid;
