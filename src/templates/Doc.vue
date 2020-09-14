@@ -6,6 +6,9 @@
      <div class="markdown" v-html="$page.doc.content" />
     <BlogTags class="tags" :tags="$page.doc.tags"></BlogTags>
     <Disqus :identifier = "$page.doc.id" :title="$page.doc.title"/>
+    <Sharethis
+            share-this-embed-url="https://platform-api.sharethis.com/js/sharethis.js#property=5f5fc50a6c001000197113c5&product=sticky-share-buttons"
+    />
   </Layout>
 </template>
 
@@ -28,6 +31,7 @@ query Doc ($path: String!) {
 
 <script>
 import BlogTags from "../components/BlogTags";
+import Sharethis from 'vue-sharethis';
 export default {
   metaInfo() {
     return {
@@ -38,7 +42,8 @@ export default {
     }
   },
   components:{
-    BlogTags:BlogTags
+    BlogTags,
+    Sharethis
   }
 }
 </script>
