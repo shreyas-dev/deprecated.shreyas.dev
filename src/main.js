@@ -3,11 +3,16 @@
 
 import DefaultLayout from '~/layouts/Default.vue'
 import '~/assets/scss/globals.scss'
-import Vuex from 'vuex'
-require('typeface-source-sans-pro')
+import Vuex from 'vuex';
+import VueDisqus from 'vue-disqus'
+require('typeface-source-sans-pro');
 
 export default function (Vue, { router, head, isClient, appOptions }) {
-  Vue.use(Vuex)
+  Vue.use(Vuex);
+
+  Vue.use(VueDisqus,{
+    shortname: 'shreyas-dev'
+  });
 
   // Set default layout as a global component
   Vue.component('Layout', DefaultLayout)

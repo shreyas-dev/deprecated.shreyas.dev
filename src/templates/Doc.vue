@@ -4,12 +4,14 @@
       {{ $page.doc.title }}
     </h1>
      <div class="markdown" v-html="$page.doc.content" />
+    <Disqus :identifier = "$page.doc.id" :title="$page.doc.title"/>
   </Layout>
 </template>
 
 <page-query>
 query Doc ($path: String!) {
   doc: doc (path: $path) {
+    id
     title
     path
     date (format: "D. MMMM YYYY")
