@@ -4,6 +4,7 @@
       {{ $page.doc.title }}
     </h1>
      <div class="markdown" v-html="$page.doc.content" />
+    <BlogTags class="tags" :tags="$page.doc.tags"></BlogTags>
     <Disqus :identifier = "$page.doc.id" :title="$page.doc.title"/>
   </Layout>
 </template>
@@ -17,11 +18,16 @@ query Doc ($path: String!) {
     date (format: "D. MMMM YYYY")
     timeToRead
     content
+    tags {
+      id
+      path
+    }
   }
 }
 </page-query>
 
 <script>
+import BlogTags from "../components/BlogTags";
 export default {
   metaInfo() {
     return {
@@ -30,6 +36,9 @@ export default {
         { key: 'description', name: 'description', content: this.$page.doc.description }
       ]
     }
+  },
+  components:{
+    BlogTags:BlogTags
   }
 }
 </script>
@@ -54,6 +63,9 @@ export default {
   }
 
 .markdown {
-  padding-bottom: 50vh;
+  padding-bottom: 5vh;
+}
+.tags{
+  padding-bottom: 5vh;
 }
 </style>
