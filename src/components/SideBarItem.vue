@@ -9,7 +9,7 @@
                 </span>
             </h3>
         </div>
-        <ul v-show="showSubMenu">
+        <ol v-show="showSubMenu">
             <li v-for="item in node.topics" :key="item.title">
                 <g-link class="topic" :to="'/' + item.slug">{{item.title}}</g-link>
     <!--            <ul v-if="checkAnchors(node.slug, item.slug)" v-for="{ node } in $static.docs.edges" :key="node.id">-->
@@ -18,7 +18,7 @@
     <!--                </li>-->
     <!--            </ul>-->
             </li>
-        </ul>
+        </ol>
     </div>
 
 </template>

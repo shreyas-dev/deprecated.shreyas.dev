@@ -3,6 +3,14 @@
     <h1>
       {{ $page.doc.title }}
     </h1>
+    <span>
+      <span>Author : <b> <i>Shreyas B</i></b></span>
+      <span style="margin-left: 30%">
+        <i><b> {{$page.doc.timeToRead}}</b></i> <span v-if="$page.doc.timeToRead == 1"> Min</span> <span v-else> Mins</span> Read
+      </span>
+      <span style="margin-left: 30%">Published Date : <b> <i>{{$page.doc.date}}</i></b></span>
+    </span>
+    <hr>
     <div class="page-contents">
       <h3 style="text-align: center">On this Page</h3>
       <ul>
@@ -32,7 +40,7 @@ query Doc ($path: String!) {
       depth
       anchor
     }
-    date (format: "D. MMMM YYYY")
+    date (format: "D, MMMM YYYY")
     timeToRead
     content
     tags {
@@ -68,6 +76,9 @@ export default {
 
 
 <style lang="scss" scoped>
+  h1{
+    margin-bottom: 2%;
+  }
 
 /deep/ > p {
   opacity: .8;
@@ -100,8 +111,9 @@ export default {
   position: -webkit-sticky;
   position: sticky;
   float: right;
-  top: 20%;
+  top: 2%;
   right: 2%;
+  margin-top: 2%;
   width: 20%;
   .dark & {
     color: $textDark;
