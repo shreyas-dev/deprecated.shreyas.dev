@@ -1,26 +1,38 @@
 <template>
-  <button id="themeSwitch" @click="toggleTheme()" aria-label="Switch theme between light and dark">
-    <transition name="theme">
-      <moon-icon v-if="theme == 'bright'" class="moon" />
-    </transition>
-      <transition `
-                  `="theme">
-      <sun-icon v-if="theme == 'dark'" class="sun" />
-    </transition>
-  </button>
+  <div>
+<!--    <button>-->
+<!--    <transition name="theme">-->
+<!--        <search-icon v-if="!search" class="search" @click="search = !search"/>-->
+<!--    </transition>-->
+<!--    <transition name="theme" style="width: 100%">-->
+<!--        <input type="text" placeholder="Search..." v-if="search">-->
+<!--    </transition>-->
+<!--    </button>-->
+    <button id="themeSwitch" @click="toggleTheme()" aria-label="Switch theme between light and dark">
+      <transition name="theme">
+        <moon-icon v-if="theme == 'bright'" class="moon" />
+      </transition>
+        <transition `
+                    `="theme">
+        <sun-icon v-if="theme == 'dark'" class="sun" />
+      </transition>
+    </button>
+  </div>
 </template>
 
 <script>
-import { MoonIcon, SunIcon } from 'vue-feather-icons'
+import { MoonIcon, SunIcon, SearchIcon } from 'vue-feather-icons'
 
 export default {
   components: {
     MoonIcon,
-    SunIcon
+    SunIcon,
+    SearchIcon
   },
   data() {
     return {
-      theme: ''
+      theme: '',
+      search: false
     }
   },
   methods: {
@@ -66,6 +78,31 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.search{
+    background: none;
+    border: 0;
+    padding: 0;
+    transition: color .15s ease-in-out;
+    cursor: pointer;
+    position: relative;
+
+    &:focus {
+      outline: none;
+    }
+
+    .dark & {
+      color: $textDark;
+    }
+
+    .bright & {
+      color: $textBright;
+    }
+}
+.search svg{
+  position: absolute;
+  top: 14px;
+  left: 40px;
+}
 button {
   background: none;
   border: 0;
@@ -88,8 +125,7 @@ button {
     color: $textBright;
   }
 }
-
-svg {
+button svg {
   position: absolute;
   top: 12px;
   left: 12px;

@@ -4,12 +4,12 @@
             <h3 class="section-title">
                 {{node.section}}
                 <span>
-                    <ChevronDownIcon style="padding-top: 2%" class="dropdown-icon" v-if="!showSubMenu" @click="toggleSubMenu()"></ChevronDownIcon>
+                    <ChevronDownIcon style="padding-top: 2%" class="dropdown-icon" v-if="!subMenuDisplayed" @click="toggleSubMenu()"></ChevronDownIcon>
                     <ChevronUpIcon class="dropdown-icon" style="padding-top: 2%" v-else @click="toggleSubMenu()"></ChevronUpIcon>
                 </span>
             </h3>
         </div>
-        <ol v-show="showSubMenu">
+        <ul v-show="subMenuDisplayed">
             <li v-for="item in node.topics" :key="item.title">
                 <g-link class="topic" :to="'/' + item.slug">{{item.title}}</g-link>
     <!--            <ul v-if="checkAnchors(node.slug, item.slug)" v-for="{ node } in $static.docs.edges" :key="node.id">-->
@@ -18,7 +18,7 @@
     <!--                </li>-->
     <!--            </ul>-->
             </li>
-        </ol>
+        </ul>
     </div>
 
 </template>
@@ -28,12 +28,20 @@
     export default {
         props: {
             node: {
-                required : true
+                required : true,
             }
         },
-        data: () => {
+        data(){
             return {
-                showSubMenu : false
+                subMenuDisplayed: false,
+            }
+        },
+        created() {
+            for (let item of this.node.topics){
+                if (item.slug === this.$route.params.slug) {
+                    this.subMenuDisplayed = true;
+                    break;
+                }
             }
         },
         components:{
@@ -42,9 +50,9 @@
         },
         methods:{
             toggleSubMenu(){
-                this.showSubMenu = ! this.showSubMenu;
-            }
-        }
+                this.subMenuDisplayed = !this.subMenuDisplayed;
+            },
+        },
     }
 </script>
 

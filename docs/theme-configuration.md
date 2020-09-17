@@ -2,6 +2,8 @@
 title: Theme configuration 
 date: 2018-09-15 07:42:34
 slug: theme-configuration
+tags: ['art','clothing']
+cover_image: '../static/forestry-instant-previews.png'
 ---
 
 ## Changing logo

@@ -26,6 +26,7 @@
     <Sharethis
             share-this-embed-url="https://platform-api.sharethis.com/js/sharethis.js#property=5f5fc50a6c001000197113c5&product=sticky-share-buttons"
     />
+
   </Layout>
 </template>
 
@@ -35,6 +36,7 @@ query Doc ($path: String!) {
     id
     title
     path
+    cover_image
     headings{
       value
       depth

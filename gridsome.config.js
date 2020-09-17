@@ -28,6 +28,7 @@ module.exports = {
       options: {
         path: 'docs/**/*.md',
         typeName: 'Doc',
+        route: '/doc/:year/:month/:day/:title',
         remark: {
           plugins: [
             '@gridsome/remark-prismjs'
@@ -43,6 +44,18 @@ module.exports = {
       }
     },
     {
+      use: 'gridsome-plugin-blog-cover',
+      options: {
+        typeName: 'Doc',
+        outputDir: './static/content/images',
+        domain: 'https://localhost:8080',
+        coverField: 'cover_image',
+        cloud_name: 'archduke',
+        api_key: '171391321488816',
+        api_secret: 'vZ6VvlqP7wfe_k2zE4RBlHfy4QY'
+      }
+    },
+    {
       use: '@gridsome/plugin-google-analytics',
       options: {
         id: (process.env.GA_ID ? process.env.GA_ID : 'XX-999999999-9')
@@ -53,7 +66,7 @@ module.exports = {
       options: {
         cacheTime: 600000
       }
-    }
+    },
   ],
   chainWebpack: config => {
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
