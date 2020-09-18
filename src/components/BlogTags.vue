@@ -45,7 +45,7 @@ a{
 }
 
 a{
-    border-width: 1px;
+    border-width: .6px;
     border-style: solid;
     padding: 7px;
     border-radius:10px;

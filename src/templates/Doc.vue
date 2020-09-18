@@ -3,14 +3,14 @@
     <h1>
       {{ $page.doc.title }}
     </h1>
-    <span>
+    <span class="meta-info">
       <span>Author : <b> <i>Shreyas B</i></b></span>
-      <span style="margin-left: 30%">
+      <span style="margin-left: 30%;">
         <i><b> {{$page.doc.timeToRead}}</b></i> <span v-if="$page.doc.timeToRead == 1"> Min</span> <span v-else> Mins</span> Read
       </span>
       <span style="margin-left: 30%">Published Date : <b> <i>{{$page.doc.date}}</i></b></span>
     </span>
-    <hr>
+    <hr class= "divider">
     <div class="page-contents">
       <h3 style="text-align: center">On this Page</h3>
       <ul>
@@ -26,7 +26,6 @@
     <Sharethis
             share-this-embed-url="https://platform-api.sharethis.com/js/sharethis.js#property=5f5fc50a6c001000197113c5&product=sticky-share-buttons"
     />
-
   </Layout>
 </template>
 
@@ -82,9 +81,22 @@ export default {
     margin-bottom: 2%;
   }
 
+  .meta-info{
+    display: flex;
+  }
 /deep/ > p {
   opacity: .8;
 }
+
+.divider{
+  .dark & {
+    color: $textDark;
+  }
+  .bright & {
+    color: $textBright;
+  }
+}
+
 
 /deep/ > h2 {
   padding-top: 100px;
