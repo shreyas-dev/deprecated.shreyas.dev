@@ -208,6 +208,14 @@ ul {
   bottom: 0;
   left: 0;
 }
+.divider{
+  .dark & {
+    color: $textDark;
+  }
+  .bright & {
+    color: $textBright;
+  }
+}
 </style>
 
 

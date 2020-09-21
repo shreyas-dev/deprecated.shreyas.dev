@@ -1,5 +1,5 @@
 <template>
-  <g-link to="/" class="logo" title="Back to home">
+  <g-link to="/portfolio" class="logo" title="Back to home">
     <transition name="theme">
       <div v-if="color == 'dark'">
         <g-image src="~/assets/img/logo-bright.svg" alt="logo" />

@@ -4,11 +4,15 @@
 import DefaultLayout from '~/layouts/Default.vue'
 import '~/assets/scss/globals.scss'
 import Vuex from 'vuex';
-import VueDisqus from 'vue-disqus'
+import VueDisqus from 'vue-disqus';
+import VueHead from 'vue-head';
+import store from "./data/store";
 require('typeface-source-sans-pro');
 
 export default function (Vue, { router, head, isClient, appOptions }) {
   Vue.use(Vuex);
+
+  Vue.use(VueHead);
 
   Vue.use(VueDisqus,{
     shortname: 'shreyas-dev'
@@ -41,20 +45,5 @@ export default function (Vue, { router, head, isClient, appOptions }) {
   })
 
   // State
-  appOptions.store = new Vuex.Store({
-    state: {
-      sidebarOpen: false
-    },
-    mutations: {
-      toggleSidebar(state) {
-        state.sidebarOpen = !state.sidebarOpen
-      },
-      closeSidebar(state) {
-        state.sidebarOpen = false
-      },
-      openSidebar(state) {
-        state.sidebarOpen = true
-      }
-    }
-  })
+  appOptions.store = store;
 }

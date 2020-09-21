@@ -18,13 +18,15 @@
     "gridsome-plugin-blog-cover": "0.0.1-beta",
     "kind-of": "^6.0.3",
     "minimist": "^1.2.3",
+    "one-liner-joke": "^1.2.0",
     "serialize-javascript": "^3.1.0",
     "typeface-source-sans-pro": "^0.0.54",
     "vue-disqus": "^4.0.1",
     "vue-feather-icons": "^4.22.0",
+    "vue-head": "^2.2.0",
     "vue-sharethis": "0.0.1",
     "vue-sticky-directive": "0.0.10",
-    "vuex": "^3.1.1",
+    "vuex": "^3.5.1",
     "websocket-extensions": "^0.1.4"
   },
   "devDependencies": {
