@@ -1,5 +1,5 @@
 import store from "./store";
-import {generateTime,generateEmoji} from "./functions";
+import {generateTime, generateEmoji, generateTable} from "./functions";
 
 const one_liners = require('one-liner-joke');
 
@@ -52,6 +52,50 @@ const taskList = {
                     clearInterval(interval);
                     resolve({message:joke.body});
                 },500);
+            });
+            return p;
+        }
+    },
+    ls:{
+        description: 'Lists all the available files',
+        ls(pushToList){
+            const p = new Promise(resolve => {
+               for (let file of store.getters.getFiles){
+                   pushToList({
+                       message:file
+                   });
+                   resolve({
+                       message:''
+                   });
+               }
+            });
+            return p;
+        }
+    },
+    cat:{
+        description: 'Will print the output of files',
+        cat(pushToList,input){
+            const p = new Promise(resolve => {
+                let file = input.split(" ")[1].trim();
+                switch (file) {
+                    case 'education.csv' : resolve({
+                        message: generateTable(store.getters.getEducation.headers,store.getters.getEducation.rows)
+                    });
+                    break;
+                    case 'experience.csv': resolve({
+                        message: generateTable(store.getters.getExperience.headers,store.getters.getExperience.rows)
+                    });
+                    break;
+                    case 'skills.csv': resolve({
+                        message: generateTable(store.getters.getSkills.headers,store.getters.getSkills.rows)
+                    });
+                    break;
+                    default: resolve({
+                        type:'Error',
+                        label:'File Not Found',
+                        message:'File '+file+' was not found, Goofie will look into it '+generateEmoji('&#128557;')
+                    });
+                }
             });
             return p;
         }

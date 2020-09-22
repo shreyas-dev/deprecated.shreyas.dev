@@ -14,10 +14,9 @@ function generateEmoji(unicode){
 }
 
 function generateTable(tableHeaders,rows) {
-    console.log(tableHeaders);
-    console.log(rows);
     let htmlHeaders='<tr>';
     for (let header of tableHeaders){
+        header = ucWordsAndRemoveUnderscores(header);
         htmlHeaders+='<th>' + header +'</th>'
     }
     htmlHeaders+='</tr>';
@@ -32,6 +31,14 @@ function generateTable(tableHeaders,rows) {
     });
 
     return `<table class="terminal-table">${htmlHeaders} ${htmlTableRows}</table>`;
+}
+
+function ucWordsAndRemoveUnderscores(sentence) {
+    return sentence.split("_").join(" ").toLowerCase()
+        .replace(/(^([a-zA-Z\p{M}]))|([ -][a-zA-Z\p{M}])/g,
+        function(s){
+            return s.toUpperCase();
+        });
 }
 
 export {
