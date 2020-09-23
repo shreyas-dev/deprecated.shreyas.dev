@@ -1,5 +1,6 @@
 import store from "./store";
 import {generateTime, generateEmoji, generateTable} from "./functions";
+import contact from "./contact";
 
 const one_liners = require('one-liner-joke');
 
@@ -77,25 +78,44 @@ const taskList = {
         cat(pushToList,input){
             const p = new Promise(resolve => {
                 let file = input.split(" ")[1].trim();
-                switch (file) {
-                    case 'education.csv' : resolve({
-                        message: generateTable(store.getters.getEducation.headers,store.getters.getEducation.rows)
-                    });
-                    break;
-                    case 'experience.csv': resolve({
-                        message: generateTable(store.getters.getExperience.headers,store.getters.getExperience.rows)
-                    });
-                    break;
-                    case 'skills.csv': resolve({
-                        message: generateTable(store.getters.getSkills.headers,store.getters.getSkills.rows)
-                    });
-                    break;
-                    default: resolve({
-                        type:'Error',
-                        label:'File Not Found',
-                        message:'File '+file+' was not found, Goofie will look into it '+generateEmoji('&#128557;')
-                    });
-                }
+                const interval = setInterval(() => {
+                    switch (file) {
+                        case 'education.csv' :
+                            resolve({
+                                message: generateTable(store.getters.getEducation.headers, store.getters.getEducation.rows)
+                            });
+                            break;
+                        case 'experience.csv':
+                            resolve({
+                                message: generateTable(store.getters.getExperience.headers, store.getters.getExperience.rows, 'terminal-table-5')
+                            });
+                            break;
+                        case 'skills.csv':
+                            resolve({
+                                message: generateTable(store.getters.getSkills.headers, store.getters.getSkills.rows, 'terminal-table-10')
+                            });
+                            break;
+                        case 'achievements.csv':
+                            resolve({
+                                message: generateTable(store.getters.getAchievements.headers, store.getters.getAchievements.rows)
+                            });
+                            break;
+                        case 'contact.txt':
+                            console.log(contact);
+                            pushToList(contact);
+                            resolve({
+                                message:''
+                            });
+                            break;
+                        default:
+                            resolve({
+                                type: 'error',
+                                label: 'File Not Found',
+                                message: ' -> '+file +' was not found, Goofie will look into it ' + generateEmoji('&#128557;')
+                            });
+                    }
+                    clearInterval(interval);
+                },500);
             });
             return p;
         }

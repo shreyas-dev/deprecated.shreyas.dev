@@ -8,7 +8,6 @@
                 <li class="shell-dots-green"></li>
             </ul>
         </div>
-
         <div >
             <div class="terminal-window" ref="terminalWindow">
                 <p v-if="greeting" v-html="greeting"></p>
@@ -125,6 +124,7 @@
         },
         created() {
             this.supportingCommandList = Object.keys(this.commandList).concat(Object.keys(this.taskList))
+            this.$parent.$on('sendCommand',this.setCommandFromParent);
         },
         async mounted() {
             if (this.defaultTask) {
@@ -139,6 +139,13 @@
         methods: {
             handleFocus() {
                 this.$refs.inputBox.focus();
+            },
+            setCommandFromParent(cmd){
+                this.inputCommand = cmd;
+                let e = {
+                    keyCode : 13
+                };
+                this.handleCommand(e);
             },
             handleCommand(e) {
                 if (e.keyCode !== 13) {
@@ -198,7 +205,7 @@
                 })
             },
             pushToList(message) {
-                this.messageList.push(message)
+                this.messageList.push(message);
                 this.autoScroll()
             },
             printHelp(input) {
@@ -434,6 +441,8 @@
     }
     .terminal-icon{
         font-size: 2em;
+        padding-bottom: 0;
+        margin-bottom: 0;
     }
 
     .terminal-table {
@@ -444,6 +453,36 @@
         border-width: .15em;
         text-align: center;
         padding: 15px;
+        .bright & {
+            border-color: $textBright;
+        }
+        .dark & {
+            border-color: $textDark;
+        }
+    }
+    .terminal-table-10 {
+         border-collapse: collapse;
+     }
+    .terminal-table-10 th , .terminal-table-10 td{
+        border-style: dashed;
+        border-width: .15em;
+        text-align: center;
+        padding: 10px;
+        .bright & {
+            border-color: $textBright;
+        }
+        .dark & {
+            border-color: $textDark;
+        }
+    }
+    .terminal-table-5 {
+        border-collapse: collapse;
+    }
+    .terminal-table-5 th , .terminal-table-5 td{
+        border-style: dashed;
+        border-width: .15em;
+        text-align: center;
+        padding: 10px;
         .bright & {
             border-color: $textBright;
         }

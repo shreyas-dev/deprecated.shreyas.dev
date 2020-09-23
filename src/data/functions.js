@@ -13,7 +13,11 @@ function generateEmoji(unicode){
     return `<span class='terminal-icon'> ${unicode}</span>`;
 }
 
-function generateTable(tableHeaders,rows) {
+function generateAnchorTags(href,text,className = 'terminal-a') {
+    return `<a class=${className} target="_blank" href="${href}"> ${text}</a>`;
+}
+
+function generateTable(tableHeaders,rows,className='terminal-table') {
     let htmlHeaders='<tr>';
     for (let header of tableHeaders){
         header = ucWordsAndRemoveUnderscores(header);
@@ -23,14 +27,13 @@ function generateTable(tableHeaders,rows) {
     let htmlTableRows='';
     rows.forEach((row)=>{
         htmlTableRows+='<tr>';
-        console.log(row);
         for (let header of tableHeaders){
             htmlTableRows+="<td>"+row[header]+"</td>";
         }
         htmlTableRows+='</tr>';
     });
 
-    return `<table class="terminal-table">${htmlHeaders} ${htmlTableRows}</table>`;
+    return `<table class="${className}">${htmlHeaders} ${htmlTableRows}</table>`;
 }
 
 function ucWordsAndRemoveUnderscores(sentence) {
@@ -44,5 +47,6 @@ function ucWordsAndRemoveUnderscores(sentence) {
 export {
     generateTime,
     generateEmoji,
-    generateTable
+    generateTable,
+    generateAnchorTags
 }

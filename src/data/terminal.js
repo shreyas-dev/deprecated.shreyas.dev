@@ -3,7 +3,7 @@ import commandList from "./terminal-command-list";
 import education from "./education";
 import experience from "./experience";
 import skills from "./skills";
-
+import achievements from "./achievements";
 
 const state = {
     task_list: taskList,
@@ -13,7 +13,8 @@ const state = {
     fileList: ['education.csv','experience.csv','achievements.csv','skills.csv'],
     my_education: education,
     my_experience: experience,
-    my_skills : skills
+    my_skills : skills,
+    my_achievements: achievements,
 };
 
 
@@ -41,6 +42,9 @@ const getters = {
     },
     getSkills(state){
         return state.my_skills;
+    },
+    getAchievements(state){
+        return state.my_achievements;
     }
 };
 
